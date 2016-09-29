@@ -1,0 +1,46 @@
+<!--
+
+  # View
+
+  [[ refresh data ]]
+
+  Destination   Dates           Price     Select
+  ===========   =============   =======   =========
+  Bahamas       Nov 4 - 7       $260      [x]
+  Turks         Oct 14 - 17     $325      [ ]
+  St. Thomas    Nov 10 - 13     $410      [ ]
+
+
+    #destination
+    def lowest_price
+      self.prices.order(price DESC).first
+    end
+
+
+
+  # Destinations Table
+  ## has_many prices
+
+  id  destination   bg_img    sm_img    selected
+
+
+  # Prices Table
+  ## belongs_to destination
+
+  depart  return  destination_id  price
+
+
+
+  # 6 weeks x iterations
+    Thurs - Sun,
+    Fri - Mon
+
+  trips = [
+    { depart: '', return: '' },
+    { depart: '', return: '' },
+    { depart: '', return: '' },
+    { depart: '', return: '' },
+    { depart: '', return: '' },
+    { depart: '', return: '' }
+  ]
+ -->
