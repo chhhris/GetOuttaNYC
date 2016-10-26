@@ -1,5 +1,5 @@
 <%
-  @selected_trip = Struct.new(
+  @selected_trip = OpenStruct.new(
     destination: 'Saint Thomas',
     temperature: 85,
     price: 324,
@@ -10,8 +10,8 @@
 %>
 
 <div>
-  <%= @selected_trip.destination.downcase %><br/>
-  <%= "#{@selected_trip.temparature}&deg;F" %><br/>
+  <%= @selected_trip.destination.downcase %><br>
+  <%= "#{@selected_trip.temperature}&deg;F" %><br>
   <span>
     <%= "$#{@selected_trip.price}" %>
     </span>
@@ -19,3 +19,8 @@
       <%= @selected_trip.departure_month %> <%= @selected_trip.departure_day %>-<%= @selected_trip.arrival_day %>
     </span>
 </div>
+
+<footer>
+  <a href="/about">about</a><br>
+  <a href="/contact">contact</a>
+</footer>

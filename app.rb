@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sinatra/base'
+require 'ostruct'
 
 class App < Sinatra::Base
   get '/' do
@@ -18,3 +19,6 @@ class App < Sinatra::Base
     erb :contact
   end
 end
+
+# docker build -t docker-sinatra .
+# docker run -p 4000:80 docker-sinatra
