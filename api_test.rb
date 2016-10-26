@@ -1,35 +1,31 @@
-require 'rest-client'
-require 'pp'
+  require 'rest-client'
+  require 'pp'
 
-api_key = 'prtl6749387986743898559646983194'
+  api_key = 'prtl6749387986743898559646983194'
 
-params = {
-  country: 'US',
-  currency: 'USD',
-  locale: 'en-US',
-  locationSchema: 'iata',
-  apikey: api_key,
-  originplace: 'JFK-sky',
-  destinationplace: 'STT-sky',
-  outbounddate: '2016-11-04',
-  inbounddate: '2016-11-06',
-  adults: 1,
-  children: 0,
-  infants: 0,
-  cabinclass: 'Economy'
-}
+  params = {
+    country: 'US',
+    currency: 'USD',
+    locale: 'en-US',
+    locationSchema: 'iata',
+    apikey: api_key,
+    originplace: 'JFK-sky',
+    destinationplace: 'STT-sky',
+    outbounddate: '2016-11-04',
+    inbounddate: '2016-11-06',
+    adults: 1,
+    children: 0,
+    infants: 0,
+    cabinclass: 'Economy'
+  }
 
-response = RestClient.post("http://business.skyscanner.net/apiservices/pricing/v1.0/?apikey=#{api_key}", params, { Accept: 'application/json' })
-polling_url = response.headers[:location]
+  response = RestClient.post("http://business.skyscanner.net/apiservices/pricing/v1.0/?apikey=#{api_key}", params, { Accept: 'application/json' })
+  polling_url = response.headers[:location]
 
-polling_params = {
-  accept: :json,
-  pagesize: 1
-}
+  json_response = RestClient.get("#{polling_url}?apiKey=#{api_key}", { accept: :json })
+  flights = JSON.parse(json_response)
 
-json_response = RestClient.get("#{polling_url}?apiKey=#{api_key}", polling_params)
-flights = JSON.parse(json_response)
-flights['Itineraries'].first
+  pp flights['Itineraries'].first
 
 pp flights['Itineraries'].first
 

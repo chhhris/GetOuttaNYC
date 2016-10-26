@@ -1,2 +1,21 @@
-<h1>Hello, WORLD.</h1>
-<h2>The time is <%= DateTime.now.strftime('%b %e, %l:%M %p') %> on <%= `hostname` %>!</h2>
+<%
+  @selected_trip = Struct.new(
+    destination: 'Saint Thomas',
+    temperature: 85,
+    price: 324,
+    departure_month: 'December',
+    departure_day: 13,
+    arrival_day: 17
+  )
+%>
+
+<div>
+  <%= @selected_trip.destination.downcase %><br/>
+  <%= "#{@selected_trip.temparature}&deg;F" %><br/>
+  <span>
+    <%= "$#{@selected_trip.price}" %>
+    </span>
+    <span>
+      <%= @selected_trip.departure_month %> <%= @selected_trip.departure_day %>-<%= @selected_trip.arrival_day %>
+    </span>
+</div>
