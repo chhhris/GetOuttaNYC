@@ -22,3 +22,5 @@ end
 
 # docker build -t docker-sinatra .
 # docker run -p 4000:80 docker-sinatra
+
+# docker build -t docker-sinatra . && docker run -p 4000:80 docker-sinatra

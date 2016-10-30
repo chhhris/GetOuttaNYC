@@ -8,19 +8,30 @@
     arrival_day: 17
   )
 %>
+<body style="background-image: url('stt.jpg'); background-size: cover;">
+  <div style="float: right; padding-right: 15%; padding-top: 15%; font-family: Helvetica, Arial, Sans-Serif; letter-spacing: 2.5px; font-size: 250%; font-weight: 100;">
+    <div>
+      <span style="background-color: rgba(191,191,191, 0.2); padding: 1px;">
+        <%= @selected_trip.destination.downcase %>
+      </span>
+    </div>
+    <div style="margin-top: 5px;">
+      <span style="background-color: rgba(191,191,191, 0.2); padding: 1px;">
+        <%= "#{@selected_trip.temperature}&deg;F" %>
+      </span>
+    </div>
+    <div style="margin-top: 5px;">
+      <span style="background-color: rgba(191,191,191, 0.2); padding: 1px;">
+        <%= "$#{@selected_trip.price}" %>
+      </span>
+      <span style="background-color: rgba(191,191,191, 0.2); padding: 1px;">
+        <%= @selected_trip.departure_month.downcase %> <%= @selected_trip.departure_day %>-<%= @selected_trip.arrival_day %>
+      </span>
+    </div>
+  </div>
+</body>
 
-<div>
-  <%= @selected_trip.destination.downcase %><br>
-  <%= "#{@selected_trip.temperature}&deg;F" %><br>
-  <span>
-    <%= "$#{@selected_trip.price}" %>
-    </span>
-    <span>
-      <%= @selected_trip.departure_month %> <%= @selected_trip.departure_day %>-<%= @selected_trip.arrival_day %>
-    </span>
-</div>
-
-<footer>
-  <a href="/about">about</a><br>
-  <a href="/contact">contact</a>
+<footer style="position: absolute; bottom: 25; padding-left: 5%; font-family: Helvetica, Arial, Sans-Serif; letter-spacing: 1.25px; font-size: 200%; font-weight: 100;">
+  <a href="/about" style="text-decoration: none;"><span style="color: black !important;" >about</span></a>
+  <a href="/contact" style="padding-left: 50px; text-decoration: none;"><span style="color: black !important;">contact</span></a>
 </footer>
