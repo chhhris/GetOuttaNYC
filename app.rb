@@ -3,7 +3,10 @@ require 'sinatra/base'
 require 'ostruct'
 
 class App < Sinatra::Base
+  set :title, 'getoutta.nyc'
+
   get '/' do
+    title = 'getoutta.nyc'
     erb :index
   end
 

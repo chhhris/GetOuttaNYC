@@ -27,7 +27,11 @@
 
   pp flights['Itineraries'].first
 
-pp flights['Itineraries'].first
+
+
+routes = "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/#{market}/#{currency}/#{locale}/#{originPlace}/#{destinationPlace}/#{outboundPartialDate}/#{inboundPartialDate}?apiKey=#{apiKey}"
+
+
 
 {"OutboundLegId"=>"12712-1611041459--32171-1-16579-1611050831",
  "InboundLegId"=>"16579-1611061615--32171-1-12712-1611062230",
