@@ -1,6 +1,12 @@
 <head>
   <title>getoutta.nyc</title>
+  <style>
+    .background-stt {
+      background-image: url('stt.jpg');
+      background-size: cover;
+    }
+  </style>
 </head>
-<body style="background-image: url('stt.jpg'); background-size: cover;">
+<body class="<%= 'background-stt' if request.path_info == '/' %>">
   <%= yield %>
 </body>
