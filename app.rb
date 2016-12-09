@@ -13,7 +13,7 @@ class App < Sinatra::Base
 
     def authorized?
       @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['wat', 'wat']
+      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['bqvc', 'bqvc']
     end
   end
 
@@ -24,9 +24,9 @@ class App < Sinatra::Base
     erb :index
   end
 
-  get '/admin' do
+  get '/oj' do
     protected!
-    erb :admin
+    erb :oj
   end
 
   get '/about' do
