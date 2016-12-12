@@ -1,63 +1,12 @@
-<style>
-  a, a:link, a:visited {
-    text-decoration: none;
-    color: #4f4f4f;
-  }
-  .trip-details {
-    float: right;
-    padding-right: 15%;
-    padding-top: 20%;
-    font-family: Helvetica, Arial, Sans-Serif;
-    letter-spacing: 2.5px;
-    font-size: 250%;
-    font-weight: 100;
-    color: #4f4f4f;
-  }
-/*  .detail {
-    background-color: rgba(191,191,191, 0.6); padding: 1px;
-  }*/
-</style>
+<link rel="stylesheet" href="app.css" type="text/css" />
 
-<%
-  @selected_trip = OpenStruct.new(
-    destination: 'Saint Thomas',
-    temperature: 84,
-    price: 375,
-    departure_month: 'February',
-    departure_day: 2,
-    arrival_day: 5
-  )
-%>
-<!-- <head>
-  <meta charset='UTF-8' />
-  <title>All title elements | as appended using the 'title' call | in reverse order</title>
-</head> -->
-
-
-<div class="trip-details">
-  <a href="https://www.google.com/flights/?source=flre_fli_share#search;f=JFK,EWR,LGA;t=STT;d=2017-01-19;r=2017-01-23;sel=JFKSTT0DL465,STTJFK0DL676;s=0" target="_blank">
-    <div>
-      <span class="detail">
-        <%= @selected_trip.destination.downcase %>
-      </span>
-    </div>
-    <div style="margin-top: 5px;">
-      <span class="detail">
-        <%= "#{@selected_trip.temperature}&deg;F" %>
-      </span>
-    </div>
-    <div style="margin-top: 5px;">
-      <span class="detail">
-        <%= "$#{@selected_trip.price}" %>
-      </span>
-      <span class="detail">
-        <%= @selected_trip.departure_month.downcase %> <%= @selected_trip.departure_day %>-<%= @selected_trip.arrival_day %>
-      </span>
-    </div>
-  </a>
+<div class="container">
+  <div class="<%= @featured_trip.code %>-details">
+    <%= erb :"_#{@featured_trip.code}" %>
+  </div>
 </div>
 
-<footer style="position: absolute; bottom: 25; padding-left: 5%; font-family: Helvetica, Arial, Sans-Serif; letter-spacing: 1.25px; font-size: 200%; font-weight: 100;">
-  <a href="/about" style="text-decoration: none;"><span style="color: #4f4f4f; !important;" >about</span></a>
-  <a href="mailto:getoutofnyc@gmail.com?subject=Hello" style="padding-left: 50px; text-decoration: none;"><span style="color: #4f4f4f; !important;">contact</span></a>
+<footer class="footer <%= "#{@featured_trip.code}-footer" %>">
+  <a href="/about">about</a>
+  <a href="mailto:getoutofnyc@gmail.com?subject=Hello" style="padding-left: 50px;">contact</a>
 </footer>

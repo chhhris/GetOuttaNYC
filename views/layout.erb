@@ -1,12 +1,12 @@
 <head>
   <title>getoutta.nyc</title>
   <style>
-    .background-stt {
-      background-image: url('stt.jpg');
+    .background-image {
+      background-image: url("<%= @featured_trip ? "#{@featured_trip.code}.jpg" : '' %>");
       background-size: cover;
     }
   </style>
 </head>
-<body class="<%= 'background-stt' if request.path_info == '/' %>">
+<body class="<%= 'background-image' if @featured_trip %>">
   <%= yield %>
 </body>

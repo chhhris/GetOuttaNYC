@@ -1,0 +1,22 @@
+<style>
+  a, a:link, a:visited {
+    text-decoration: none;
+    color: #4f4f4f;
+  }
+</style>
+
+<a href="<%= @featured_trip.url %>" target="_blank">
+  <div>
+    <span class="detail">
+      <%= @featured_trip.destination.downcase %> <%= "#{@featured_trip.temperature}&deg;F" %>
+    </span>
+  </div>
+  <div style="margin-top: 5px;">
+    <span class="detail">
+      <%= "$#{@featured_trip.price}" %>
+    </span>
+    <span class="detail">
+      <%= @featured_trip.departure_month.downcase %> <%= @featured_trip.departure_day %>-<%= @featured_trip.arrival_day %>
+    </span>
+  </div>
+</a>
