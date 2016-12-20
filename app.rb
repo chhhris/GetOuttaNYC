@@ -18,18 +18,11 @@ class App < Sinatra::Base
 
     def featured_trip
       # flight = Redis.get('featured_flight')
-      # flight = ITINERARIES[params[:airport_code].to_sym]
       flight_code = params[:code] || 'pos'
       flight = Itineraries.get(flight_code)
       OpenStruct.new(flight)
     end
-
-    # def itineraries
-
-    # end
   end
-
-  set :title, 'getoutof.nyc'
 
   get '/' do
     @featured_trip = featured_trip
@@ -90,10 +83,8 @@ class App < Sinatra::Base
 
 end
 
-# docker build -t docker-sinatra .
-# docker run -p 4000:80 docker-sinatra
+# Docker build image and run server
+# $ docker build -t docker-sinatra . && docker run -p 4000:80 docker-sinatra
 
-# docker build -t docker-sinatra . && docker run -p 4000:80 docker-sinatra
-
-# sinatra server
-# bundle exec rackup -p 4000
+# Rack server only (ex-Docker)
+# $ bundle exec rackup -p 4000
