@@ -52,6 +52,13 @@ routes = "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/#{mar
 
 
 
+# Sheetsu Google Sheets API
+goog = 'https://sheetsu.com/apis/v1.0/81a81299e07a'
+api_url = 'https://sheetsu.com/apis/v1.0/81a81299e07a/sheets/GOONYCFlightData'
+db_api_response = RestClient.get(api_url)
+
+
+
 {"OutboundLegId"=>"12712-1611041459--32171-1-16579-1611050831",
  "InboundLegId"=>"16579-1611061615--32171-1-12712-1611062230",
  "PricingOptions"=>
