@@ -1,8 +1,14 @@
 require 'sinatra'
 require 'sinatra/base'
 require 'ostruct'
+require "#{Dir.pwd}/models/trip.rb"
 
 class App < Sinatra::Base
+  DESTINATION_NAMES = {
+    stt: 'Saint Thomas',
+    cun: 'Tulum',
+    pos: 'Port of Spain'
+  }
 
   helpers do
     def protected!
@@ -15,17 +21,12 @@ class App < Sinatra::Base
       @auth ||=  Rack::Auth::Basic::Request.new(request.env)
       @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['bqvc', 'bqvc']
     end
-
-    def featured_trip
-      # flight = Redis.get('featured_flight')
-      flight_code = params[:code] || 'pos'
-      flight = Itineraries.get(flight_code)
-      OpenStruct.new(flight)
-    end
   end
 
   get '/' do
-    @featured_trip = featured_trip
+    @featured_trip = Trip.where(featured: true).first
+    @destination = DESTINATION_NAMES[@featured_trip.destination_code.downcase.to_sym]
+
     erb :index
   end
 
@@ -40,45 +41,6 @@ class App < Sinatra::Base
 
   get '/contact' do
     erb :contact
-  end
-
-  class Itineraries
-    TRIPS = {
-      stt: {
-        code: 'stt',
-        destination: 'Saint Thomas',
-        temperature: 84,
-        price: 375,
-        departure_month: 'February',
-        departure_day: 2,
-        arrival_day: 5,
-        url: 'http://bit.ly/2hexMC4'
-      },
-      cun: {
-        code: 'cun',
-        destination: 'Tulum',
-        temperature: 75,
-        price: 280,
-        departure_month: 'January',
-        departure_day: 20,
-        arrival_day: 23,
-        url: 'http://bit.ly/2hexFXa'
-      },
-      pos: {
-        code: 'pos',
-        destination: 'Port of Spain',
-        temperature: 86,
-        price: 350,
-        departure_month: 'February',
-        departure_day: 2,
-        arrival_day: 5,
-        url: 'http://bit.ly/2heGKir'
-      }
-    }
-
-    def self.get(code)
-      TRIPS[code.to_sym]
-    end
   end
 
 end

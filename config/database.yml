@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: goonyc_dev
   pool: 2
-  username: your_username
-  password: your_password
+  username: goonyc-admin
+  password: spacecat1
 
 production:
   adapter: postgresql
@@ -12,4 +12,4 @@ production:
   database: goonyc_prod
   pool: 2
   username: goonyc-admin
-  password:
+  password: spacecat1

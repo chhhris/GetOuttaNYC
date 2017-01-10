@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#ffffff">
   <style>
     .background-image {
-      background-image: url("<%= @featured_trip ? "#{@featured_trip.code}.jpg" : '' %>");
+      background-image: url("<%= @featured_trip ? "#{@featured_trip.destination_code.downcase}.jpg" : '' %>");
       background-size: cover;
     }
   </style>

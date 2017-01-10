@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'thin'
 
 # db
-# gem install activerecord
-# gem install sinatra-activerecord
-# gem install rake
+gem 'pg'
+gem 'activerecord'
+gem 'sinatra-activerecord'
+gem 'rake'

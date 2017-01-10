@@ -92,11 +92,13 @@
 
   [[ refresh data ]]
 
-  Destination   Dates           Price     Select
-  ===========   =============   =======   =========
-  Bahamas       Nov 4 - 7       $260      [x]
-  Turks         Oct 14 - 17     $325      [ ]
-  St. Thomas    Nov 10 - 13     $410      [ ]
+t = Trip.new(destination_code: 'STT', departure: 10.days.from_now, return: 13.days.from_now, price: '340.5', url: 'http://bit.ly/2hexMC4', featured: true)
+
+  Destination    Code            Departure       Return          Price     Selected
+  ===========    =============   =============   =============   =======   =========
+  Bahamas        STT             Nov 4           Nov 4           $260      true
+  Turks          POS             Oct 14          Oct 14          $325      false
+  St. Thomas     CUN             Nov 10          Nov 10          $410      false
 
 
     #destination
