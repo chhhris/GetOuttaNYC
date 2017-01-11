@@ -21,11 +21,14 @@
     background-color: #BDB76B;
     color: white;
   }
-  .rowEven {
+  .trueRow {
     background-color: #FFFFE0;
   }
-  .rowOdd {
+  .falseRow {
     background-color: #FFF;
+  }
+  .featuredRow {
+    background-color: #10c4b5;
   }
   .flightsTable td, .flightsTable th {
     padding: 10px;
@@ -65,12 +68,16 @@
           return_date = trip.return.strftime('%e')
           return_date.prepend("#{trip.return.strftime('%B').downcase} ") if trip.return.strftime('%B') != trip.departure.strftime('%B')
       %>
-      <tr class="<%= index.odd? ? 'rowOdd' : 'rowEven' %>">
+      <tr class="<%= trip.featured? ? 'featuredRow' : "#{index.odd?}Row" %>">
         <td>
-          <form method="POST" action="/select_trip">
+          <% if trip.featured? %>
+            <b>Featured</b>
+          <% else %>
+            <form method="POST" action="/select_trip" style="margin-bottom: 0;">
               <input type="hidden" name="id" value="<%= trip.id %>">
               <button type="submit">Select</button>
-          </form>
+            </form>
+          <% end %>
         </td>
         <td><%= DESTINATION_NAMES[trip.destination_code.downcase.to_sym] %></td>
         <td><%= "$#{sprintf("%.0f", trip.price)}" %></td>

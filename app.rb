@@ -32,7 +32,7 @@ class App < Sinatra::Base
 
   get '/oj' do
     protected!
-    @trips = Trip.all
+    @trips = Trip.all.order(destination_code: :desc)
 
     erb :oj
   end
@@ -46,17 +46,22 @@ class App < Sinatra::Base
   end
 
   post '/select_trip' do
-    params.to_s
-    # old_featured_trip = Trip.where(featured: true).first
-    # old_featured_trip.featured = false
-
-    # new_featured_trip = Trip.find(params[:id])
-    # new_featured_trip.featured = true
-    # if new_featured_trip.save
-    #   old_featured_trip.save
-    # end
-
+    # params.to_s
+    # @featured_trip = Trip.find(params[:id])
     # redirect '/'
+
+    old_featured_trip = Trip.where(featured: true).first
+    new_featured_trip = Trip.find(params[:id])
+
+    if new_featured_trip.present?
+      new_featured_trip.featured = true
+      new_featured_trip.save
+
+      old_featured_trip.featured = false
+      old_featured_trip.save
+    end
+
+    redirect '/oj'
   end
 
 end
