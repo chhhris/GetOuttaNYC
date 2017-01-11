@@ -10,20 +10,6 @@
   .refresh {
     margin-bottom: 20px;
   }
-  /*.flightsTable {
-    background-color: #eee;
-    border-collapse: collapse;
-  }
-  .flightsTable th {
-    background-color: #000;
-    color: white;
-    width: 10%;
-  }
-  .flightsTable td, .flightsTable th {
-    padding: 5px;
-    border: 1px solid #000;
-  }*/
-
   .flightsTable {
     border-collapse: collapse;
     color: #000;
@@ -50,6 +36,14 @@
   }
 </style>
 
+<%
+    DESTINATION_NAMES = {
+      stt: 'Saint Thomas',
+      cun: 'Tulum',
+      pos: 'Port of Spain'
+    }
+%>
+
 <div class="body">
   <h1>Flights Dashboard</h1>
 
@@ -65,26 +59,27 @@
       <th style="width: 20%;">Weekend</th>
       <th style="width: 15%;">URL</th>
     </tr>
-    <% index = 1 %>
-    <tr class="<%= index.odd? ? 'rowOdd' : 'rowEven' %>">
-      <td><button>Select</button></td>
-      <td>St. Thomas</td>
-      <td>$340</td>
-      <td>1/30 - 2/2</td>
-      <td><a href="http://example.com">Link</a></td>
-    </tr>
-    <tr class="rowEven">
-      <td><button>Select</button></td>
-      <td>Port Au Prince</td>
-      <td>$420</td>
-      <td>1/30 - 2/2</td>
-      <td><a href="http://example.com">Link</a></td>
-    </tr>
-
+    <% @trips.each_with_index do |trip, index| %>
+      <%
+          departure_date = "#{trip.departure.strftime('%B').downcase} #{trip.departure.strftime('%e').downcase}"
+          return_date = trip.return.strftime('%e')
+          return_date.prepend("#{trip.return.strftime('%B').downcase} ") if trip.return.strftime('%B') != trip.departure.strftime('%B')
+      %>
+      <tr class="<%= index.odd? ? 'rowOdd' : 'rowEven' %>">
+        <td>
+          <form method="POST" action="/select_trip">
+              <input type="hidden" name="id" value="<%= trip.id %>">
+              <button type="submit">Select</button>
+          </form>
+        </td>
+        <td><%= DESTINATION_NAMES[trip.destination_code.downcase.to_sym] %></td>
+        <td><%= "$#{sprintf("%.0f", trip.price)}" %></td>
+        <td><%= departure_date %>-<%= return_date %></td>
+        <td><a href="<%= trip.url %>">Link</a></td>
+      </tr>
+    <% end %>
   </table>
 </div>
-
-
 
 <!--
 
@@ -92,7 +87,7 @@
 
   [[ refresh data ]]
 
-t = Trip.new(destination_code: 'STT', departure: 10.days.from_now, return: 13.days.from_now, price: '340.5', url: 'http://bit.ly/2hexMC4', featured: true)
+t = Trip.new(destination_code: 'CUN', departure: 15.days.from_now, return: 18.days.from_now, price: '420.27', url: 'http://example.com', featured: false)
 
   Destination    Code            Departure       Return          Price     Selected
   ===========    =============   =============   =============   =======   =========
@@ -105,8 +100,6 @@ t = Trip.new(destination_code: 'STT', departure: 10.days.from_now, return: 13.da
     def lowest_price
       self.prices.order(price DESC).first
     end
-
-
 
   # Destinations Table
   ## has_many prices

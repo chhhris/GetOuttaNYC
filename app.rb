@@ -32,6 +32,8 @@ class App < Sinatra::Base
 
   get '/oj' do
     protected!
+    @trips = Trip.all
+
     erb :oj
   end
 
@@ -41,6 +43,20 @@ class App < Sinatra::Base
 
   get '/contact' do
     erb :contact
+  end
+
+  post '/select_trip' do
+    params.to_s
+    # old_featured_trip = Trip.where(featured: true).first
+    # old_featured_trip.featured = false
+
+    # new_featured_trip = Trip.find(params[:id])
+    # new_featured_trip.featured = true
+    # if new_featured_trip.save
+    #   old_featured_trip.save
+    # end
+
+    # redirect '/'
   end
 
 end
