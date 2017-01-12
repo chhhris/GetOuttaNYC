@@ -1,7 +1,8 @@
 require 'rest-client'
 require 'pp'
 
-api_key = 'prtl6749387986743898559646983194'
+# api_key = 'prtl6749387986743898559646983194'
+api_key = 've518156965014636303894819187830'
 
 params = {
   country: 'US',
@@ -11,8 +12,8 @@ params = {
   apikey: api_key,
   originplace: 'JFK-sky',
   destinationplace: 'STT-sky',
-  outbounddate: '2016-12-16',
-  inbounddate: '2016-12-19',
+  outbounddate: '2017-02-16',
+  inbounddate: '2017-02-19',
   adults: 1,
   children: 0,
   infants: 0,

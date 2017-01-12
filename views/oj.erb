@@ -51,7 +51,7 @@
   <h1>Flights Dashboard</h1>
 
   <div class="refresh">
-    <button>Refresh flights</button>
+    <button>Refresh flights</button><span> | <a href="/">see home page >></a></span>
   </div>
 
   <table class="flightsTable">
@@ -82,7 +82,7 @@
         <td><%= DESTINATION_NAMES[trip.destination_code.downcase.to_sym] %></td>
         <td><%= "$#{sprintf("%.0f", trip.price)}" %></td>
         <td><%= departure_date %>-<%= return_date %></td>
-        <td><a href="<%= trip.url %>">Link</a></td>
+        <td><a href="<%= trip.url %>" target="_blank">Link</a></td>
       </tr>
     <% end %>
   </table>

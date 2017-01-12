@@ -24,7 +24,7 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    @featured_trip = Trip.where(featured: true).first
+    @featured_trip = Trip.where(featured: true).first || Trip.last
     @destination = DESTINATION_NAMES[@featured_trip.destination_code.downcase.to_sym]
 
     erb :index
@@ -32,7 +32,12 @@ class App < Sinatra::Base
 
   get '/oj' do
     protected!
-    @trips = Trip.all.order(destination_code: :desc)
+
+    if Trip.where(featured: true).blank?
+      Trip.last.update_column(:featured, true)
+    end
+
+    @trips = Trip.all.order(price: :asc)
 
     erb :oj
   end
@@ -46,10 +51,6 @@ class App < Sinatra::Base
   end
 
   post '/select_trip' do
-    # params.to_s
-    # @featured_trip = Trip.find(params[:id])
-    # redirect '/'
-
     old_featured_trip = Trip.where(featured: true).first
     new_featured_trip = Trip.find(params[:id])
 
@@ -63,6 +64,12 @@ class App < Sinatra::Base
 
     redirect '/oj'
   end
+
+  post '/refresh_flights' do
+    Trip.generate_flights
+    redirect '/oj'
+  end
+
 
 end
 
