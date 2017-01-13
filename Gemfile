@@ -5,7 +5,7 @@ gem 'thin'
 gem 'rest-client'
 
 # db
-gem 'pg', '~> 0.19'
+gem 'pg', '~> 0.19.0'
 gem 'activerecord'
 gem 'sinatra-activerecord'
 gem 'rake'

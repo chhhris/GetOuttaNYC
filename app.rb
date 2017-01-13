@@ -1,4 +1,6 @@
 require 'sinatra'
+require 'rubygems'
+require 'bundler/setup'
 require 'sinatra/base'
 require 'ostruct'
 require "#{Dir.pwd}/models/trip.rb"
