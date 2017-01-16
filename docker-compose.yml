@@ -1,0 +1,18 @@
+db:
+    image: "postgres"
+    environment:
+        - POSTGRES_USER=getoutofnyc
+        - POSTGRES_PASSWORD=spacecat1
+    ports:
+        - "5432:5432"
+api:
+  build: .
+  ports:
+    - "4567:80"
+  links:
+    - "db"
+  environment:
+    - DATABASE_HOST=db
+    - DATABASE_NAME=getoutofnyc
+    - DATABASE_USER=getoutofnyc
+    - DATABASE_PASSWORD=spacecat1

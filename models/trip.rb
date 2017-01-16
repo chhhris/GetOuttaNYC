@@ -23,7 +23,7 @@ class Trip  < ActiveRecord::Base
 
     def generate_flights
       first_departure_date = Date.parse('Friday') + 14.days
-      departure_dates = [ first_departure_date, first_departure_date + 7.days, first_departure_date + 14.days ]
+      departure_dates = [ first_departure_date, first_departure_date + 14.days, first_departure_date + 28.days ]
 
       departure_dates.each do |departure_date|
         return_date = departure_date + 3.days

@@ -1,11 +1,10 @@
 development:
   adapter: postgresql
-  host: /var/run/postgresql
   encoding: unicode
-  database: goonyc_dev
   pool: 2
-  username: goonyc-admin
-  password: spacecat1
+  database: <%= ENV['DATABASE_NAME'] || 'getoutofnyc' %>
+  username: <%= ENV['DATABASE_USER'] || 'goonyc-admin' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'spacecat1' %>
 
 production:
   adapter: postgresql
