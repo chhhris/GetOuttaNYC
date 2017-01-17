@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   encoding: unicode
   pool: 2
-  database: <%= ENV['DATABASE_NAME'] || 'getoutofnyc' %>
+  database: <%= ENV['DATABASE_NAME'] || 'goonyc_dev' %>
   username: <%= ENV['DATABASE_USER'] || 'goonyc-admin' %>
   password: <%= ENV['DATABASE_PASSWORD'] || 'spacecat1' %>
 
