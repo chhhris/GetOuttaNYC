@@ -5,12 +5,13 @@ development:
   database: <%= ENV['DATABASE_NAME'] || 'getoutofnyc' %>
   username: <%= ENV['DATABASE_USER'] || 'goonyc-admin' %>
   password: <%= ENV['DATABASE_PASSWORD'] || 'spacecat1' %>
+  host: db
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: getoutofnyc
-  username: getoutofnyc
-  password: spacecat1
-  host: aa1wnfoa5vacmfw.c8plrwqkyfst.us-east-1.rds.amazonaws.com
-  port: 5432
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: getoutofnyc
+#   username: getoutofnyc
+#   password: spacecat1
+#   host: aa1wnfoa5vacmfw.c8plrwqkyfst.us-east-1.rds.amazonaws.com
+#   port: 5432

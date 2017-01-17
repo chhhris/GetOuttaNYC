@@ -6,7 +6,7 @@ ENV APP_ROOT /var/www/docker-sinatra
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 ADD Gemfile* $APP_ROOT/
-RUN bundle install
+RUN bundle install  --without development test
 ADD . $APP_ROOT
 
 EXPOSE 80
