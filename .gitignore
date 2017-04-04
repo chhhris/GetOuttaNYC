@@ -1,4 +1,5 @@
 .ruby-version
+.env
 .vagrant/
 .bundle/
 vendor/
